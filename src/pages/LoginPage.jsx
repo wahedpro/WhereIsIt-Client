@@ -5,7 +5,7 @@ import { authContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
 
 const LoginPage = () => {
-    const {loginUser} = useContext(authContext);
+    const {loginUser, LoginWithGoogle} = useContext(authContext);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -26,6 +26,21 @@ const LoginPage = () => {
             })
             .catch((err) => {
                 setError(err.message || "Invalid email or password.");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+
+    const googleLogin = () => {
+        setLoading(true);
+        LoginWithGoogle()
+            .then(() => {
+                toast.success("Logged in with Google!");
+                navigate('/');
+            })
+            .catch((err) => {
+                toast.error(err.message || "Google login failed. Please try again.");
             })
             .finally(() => {
                 setLoading(false);
@@ -60,7 +75,7 @@ const LoginPage = () => {
 
             {/* Additional Options */}
             <div className="flex flex-col py-3">
-                <button disabled={loading} className="p-3 border mb-3 bg-white  text-black hover:bg-[#32b96b] hover:text-white transition">
+                <button onClick={googleLogin} disabled={loading} className="p-3 border mb-3 bg-white  text-black hover:bg-[#32b96b] hover:text-white transition">
                     {loading ? "Logging in..." : "Login with Google"}
                 </button>
                 <p>
