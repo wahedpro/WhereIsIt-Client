@@ -1,12 +1,15 @@
-import { useState } from "react";
-import { NavLink} from "react-router-dom";
+import { useContext, useState } from "react";
+import { NavLink, useNavigate} from "react-router-dom";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
+import { authContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const LoginPage = () => {
-    
+    const {loginUser} = useContext(authContext);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -16,7 +19,17 @@ const LoginPage = () => {
         const email = e.target.email.value;
         const password = e.target.password.value;
 
-        console.log(email,password)
+        loginUser(email, password)
+            .then(() => {
+                toast.success("Login successful!");
+                navigate('/');
+            })
+            .catch((err) => {
+                setError(err.message || "Invalid email or password.");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     };
 
 

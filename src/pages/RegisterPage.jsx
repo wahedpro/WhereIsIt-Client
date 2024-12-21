@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
+import { authContext } from "../provider/AuthProvider";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
+    const { createUser } = useContext(authContext);
+    const navigate = useNavigate();
+
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         setError("");
@@ -12,8 +18,6 @@ const RegisterPage = () => {
         const email = e.target.email.value;
         const image = e.target.photoURL.value;
         const password = e.target.password.value;
-
-        console.log(name,email,image)
 
         // Password Validation
         const validationErrors = [];
@@ -30,6 +34,16 @@ const RegisterPage = () => {
             setError(validationErrors.join(" "));
             return;
         }
+
+        // Register User and Update Profile
+        createUser(email, password)
+            .then((res) => {
+                toast.success("Successfully registered!");
+                navigate("/");
+            })
+            .catch((err) => {
+                setError(err.message || "Failed to register. Please try again.");
+            });
     };
 
     return (
@@ -82,9 +96,7 @@ const RegisterPage = () => {
                     Register
                 </button>
             </form>
-            {/* Show Error */}
             {error && <p className="text-red-500 mb-5">{error}</p>}
-
             <p>
                 Already have an account?{" "}
                 <NavLink to="/login" className="text-blue-400">
