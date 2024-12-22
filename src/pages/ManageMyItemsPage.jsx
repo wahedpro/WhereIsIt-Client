@@ -15,7 +15,7 @@ const MyItems = () => {
     return (
         <div className="py-10">
             <h1 className="text-2xl font-semibold text-center mb-5">My Items</h1>
-            
+
             <div className="overflow-x-auto">
                 <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
                     <thead>
@@ -52,7 +52,7 @@ const MyItems = () => {
                                 </td>
                                 {/* Actions */}
                                 <td className="px-6 py-4 border-b border-gray-200 space-x-2">
-                                    <Link>
+                                    <Link to={`/updateItems/${item._id}`}>
                                         <button className="px-5 py-2 bg-[#2ecc71] text-white rounded-md hover:bg-[#32b96b] transition">Update</button>
                                     </Link>
                                     <button className="px-5 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">Delete</button>
