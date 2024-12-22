@@ -12,14 +12,14 @@ const Navbar = () => {
 
     return (
         <div>
-            <div className="container mx-auto px-4 flex justify-between items-center py-5">
+            <div className="container mx-auto px-4 flex justify-between items-center border-b py-5">
                 {/* website name */}
                 <NavLink to="/" className="font-semibold text-2xl">WhereIsIt</NavLink>
 
                 {/* Menu */}
                 <div className="flex gap-4 items-center">
                     <NavLink to="/" className={({ isActive }) => (isActive ? "text-[#2ecc71] font-semibold" : "")}>Home</NavLink>
-                    <NavLink to="/load" className={({ isActive }) => (isActive ? "text-[#2ecc71] font-semibold" : "")}>Load and Found Items</NavLink>
+                    <NavLink to="/allItems" className={({ isActive }) => (isActive ? "text-[#2ecc71] font-semibold" : "")}>Load and Found Items</NavLink>
                 </div>
 
                 <div className="flex items-center gap-4">

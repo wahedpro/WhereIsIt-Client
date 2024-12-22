@@ -6,6 +6,7 @@ import LoginPage from "../pages/LoginPage";
 import AddItemsPage from "../pages/AddItemsPage";
 import ManageMyItemsPage from "../pages/ManageMyItemsPage";
 import AllRecoveredItemsPage from "../pages/AllRecoveredItemsPage";
+import LostAndFoundItemsPage from "../pages/LostAndFoundItemsPage";
 
 const router = createBrowserRouter([
     {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element : <LoginPage></LoginPage>
+            },
+            {
+                path: "allItems",
+                element: <LostAndFoundItemsPage></LostAndFoundItemsPage>
             },
             {
                 path: "addItems",
