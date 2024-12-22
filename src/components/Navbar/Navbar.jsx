@@ -44,9 +44,9 @@ const Navbar = () => {
                                     <hr className="my-2" />
 
                                     {/* Dropdown Links */}
-                                    <NavLink to="/add-item" className="block px-2 py-1 text-gray-700 hover:bg-gray-200 rounded">Add Lost & Found Item</NavLink>
-                                    <NavLink to="/recovered-items" className="block px-2 py-1 text-gray-700 hover:bg-gray-200 rounded">All Recovered Items</NavLink>
-                                    <NavLink to="/manage-items" className="block px-2 py-1 text-gray-700 hover:bg-gray-200 rounded">Manage My Items</NavLink>
+                                    <NavLink to="/addItems" className="block px-2 py-1 text-gray-700 hover:bg-gray-200 rounded">Add Lost & Found Item</NavLink>
+                                    <NavLink to="/allRecovered" className="block px-2 py-1 text-gray-700 hover:bg-gray-200 rounded">All Recovered Items</NavLink>
+                                    <NavLink to="/myItems" className="block px-2 py-1 text-gray-700 hover:bg-gray-200 rounded">Manage My Items</NavLink>
                                 </div>
                             )}
                             {/* Logout Button */}

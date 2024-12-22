@@ -3,6 +3,9 @@ import MainLayout from "../layouts/MainLayout";
 import HomePage from "../pages/HomePage";
 import RegisterPage from "../pages/RegisterPage";
 import LoginPage from "../pages/LoginPage";
+import AddItemsPage from "../pages/AddItemsPage";
+import ManageMyItemsPage from "../pages/ManageMyItemsPage";
+import AllRecoveredItemsPage from "../pages/AllRecoveredItemsPage";
 
 const router = createBrowserRouter([
     {
@@ -20,6 +23,18 @@ const router = createBrowserRouter([
             {
                 path: "login",
                 element : <LoginPage></LoginPage>
+            },
+            {
+                path: "addItems",
+                element : <AddItemsPage></AddItemsPage>
+            },
+            {
+                path: "myItems",
+                element : <ManageMyItemsPage></ManageMyItemsPage>
+            },
+            {
+                path: "allRecovered",
+                element : <AllRecoveredItemsPage></AllRecoveredItemsPage>
             }
         ]
     },
