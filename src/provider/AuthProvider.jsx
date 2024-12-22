@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut} from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { auth } from "../firebase/firebase.init";
 export const authContext = createContext();
 
@@ -55,6 +55,14 @@ const AuthProvider = ({ children }) => {
             unsubscribe();
         };
     }, []);
+
+    if (loading) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#2ecc71]"></div>
+            </div>
+        );
+    }
 
     return (
         <authContext.Provider value={authInfo}>

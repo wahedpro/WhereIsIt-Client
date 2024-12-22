@@ -2,6 +2,7 @@ import { useContext } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../provider/AuthProvider";
+import Swal from 'sweetalert2'
 
 const AddItems = () => {
 
@@ -18,7 +19,32 @@ const AddItems = () => {
         const date = e.target.dateLost.value;
         const userEmail = e.target.userEmail.value;
         const displayName = e.target.displayName.value;
-        console.log(postType,thumbnail,title,description,category,location,date,userEmail,displayName);
+        const newItems = {postType,thumbnail,title,description,category,location,date,userEmail,displayName};
+
+        // send data to the server
+        fetch('http://localhost:3000/addItems', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json' // Corrected header key
+            },
+            body: JSON.stringify(newItems), // Sending the newCampaign object as JSON
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data);
+                if(data.insertedId){
+                    Swal.fire({
+                        title: "Good job!",
+                        text: "Campaign added successfully!",
+                        icon: "success",
+                    });
+                    // Clear all fields using form reset
+                    e.target.reset();
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error); // Handle any network errors
+            });
     }
 
     return (
