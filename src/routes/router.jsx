@@ -8,6 +8,7 @@ import ManageMyItemsPage from "../pages/ManageMyItemsPage";
 import AllRecoveredItemsPage from "../pages/AllRecoveredItemsPage";
 import LostAndFoundItemsPage from "../pages/LostAndFoundItemsPage";
 import UpdateItemsPage from "../pages/UpdateItemsPage";
+import PostDetailsPage from "../pages/PostDetailsPage";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
                 path: "allItems",
                 element: <LostAndFoundItemsPage></LostAndFoundItemsPage>,
                 loader: ()=> fetch('http://localhost:3000/addItems')
+            },
+            {
+                path: 'Items/:id',
+                element: <PostDetailsPage></PostDetailsPage>,
+                loader: ({params})=>fetch(`http://localhost:3000/itemDetails/${params.id}`),
             },
             {
                 path: "addItems",

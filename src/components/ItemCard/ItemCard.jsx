@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { IoLocationOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 
 const ItemCard = ({ item }) => {
@@ -16,7 +17,7 @@ const ItemCard = ({ item }) => {
                 <p className="text-sm text-gray-500">{item.category}</p>
                 <p className="text-sm flex items-center gap-2"><IoLocationOutline size={15} /> {item.location}</p>
                 <button className="mt-3 px-4 py-2 bg-[#2ecc71] text-white rounded hover:bg-[#1ebb9e]">
-                    View Details
+                    <Link to={`/Items/${item._id}`}>View Details</Link>
                 </button>
             </div>
         </div>
@@ -30,6 +31,7 @@ ItemCard.propTypes = {
         category: PropTypes.string.isRequired,
         location: PropTypes.string.isRequired,
         postType: PropTypes.string.isRequired,
+        _id:PropTypes.string._id
     }).isRequired,
 };
 
