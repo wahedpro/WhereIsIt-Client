@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { authContext } from "../provider/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyItems = () => {
     const items = useLoaderData(); // All items loaded from the loader
@@ -11,6 +12,37 @@ const MyItems = () => {
     const myItems = items.filter((item) => item.userEmail === email);
     const [itemList, setItemList] = useState(myItems);
 
+    const handleItemDelete = (id) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // delete from the database
+                fetch(`http://localhost:3000/addItems/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        if (data.deletedCount) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your Item has been deleted.",
+                                icon: "success"
+                            });
+
+                            const remainingItems = itemList.filter((item) => item._id !== id);
+                            setItemList(remainingItems);
+                        }
+                    });
+            }
+        });
+    };
 
     return (
         <div className="py-10">
@@ -55,7 +87,7 @@ const MyItems = () => {
                                     <Link to={`/updateItems/${item._id}`}>
                                         <button className="px-5 py-2 bg-[#2ecc71] text-white rounded-md hover:bg-[#32b96b] transition">Update</button>
                                     </Link>
-                                    <button className="px-5 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">Delete</button>
+                                    <button onClick={() => handleItemDelete(item._id)} className="px-5 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">Delete</button>
                                 </td>
                             </tr>
                         ))}
