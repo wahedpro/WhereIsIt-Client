@@ -36,7 +36,8 @@ const router = createBrowserRouter([
             },
             {
                 path: "myItems",
-                element : <ManageMyItemsPage></ManageMyItemsPage>
+                element : <ManageMyItemsPage></ManageMyItemsPage>,
+                loader: ()=> fetch('http://localhost:3000/addItems')
             },
             {
                 path: "allRecovered",

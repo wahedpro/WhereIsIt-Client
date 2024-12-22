@@ -99,10 +99,10 @@ const AddItems = () => {
                 <div>
                     <label className="block font-semibold mb-2">Category</label>
                     <select name="category" className="border p-2 rounded w-full" defaultValue="pets">
-                        <option value="pets">Pets</option>
-                        <option value="documents">Documents</option>
-                        <option value="gadgets">Gadgets</option>
-                        <option value="others">Others</option>
+                        <option value="Pets">Pets</option>
+                        <option value="Documents">Documents</option>
+                        <option value="Gadgets">Gadgets</option>
+                        <option value="Others">Others</option>
                     </select>
                 </div>
 
