@@ -9,6 +9,8 @@ import AllRecoveredItemsPage from "../pages/AllRecoveredItemsPage";
 import LostAndFoundItemsPage from "../pages/LostAndFoundItemsPage";
 import UpdateItemsPage from "../pages/UpdateItemsPage";
 import PostDetailsPage from "../pages/PostDetailsPage";
+import ErrorPage from "../pages/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -17,7 +19,8 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <HomePage></HomePage>
+                element: <HomePage></HomePage>,
+                loader: ()=> fetch('http://localhost:3000/addItems')
             },
             {
                 path: "register",
@@ -34,27 +37,31 @@ const router = createBrowserRouter([
             },
             {
                 path: 'Items/:id',
-                element: <PostDetailsPage></PostDetailsPage>,
+                element: <PrivateRoute><PostDetailsPage></PostDetailsPage></PrivateRoute>,
                 loader: ({params})=>fetch(`http://localhost:3000/itemDetails/${params.id}`),
             },
             {
                 path: "addItems",
-                element : <AddItemsPage></AddItemsPage>
+                element : <PrivateRoute><AddItemsPage></AddItemsPage></PrivateRoute>
             },
             {
                 path: "myItems",
-                element : <ManageMyItemsPage></ManageMyItemsPage>,
+                element : <PrivateRoute><ManageMyItemsPage></ManageMyItemsPage></PrivateRoute>,
                 loader: ()=> fetch('http://localhost:3000/addItems')
             },
             {
                 path: 'updateItems/:id',
-                element: <UpdateItemsPage></UpdateItemsPage>,
+                element: <PrivateRoute><UpdateItemsPage></UpdateItemsPage></PrivateRoute>,
                 loader: ({params})=>fetch(`http://localhost:3000/addItems/${params.id}`),
             },
             {
                 path: "allRecovered",
-                element : <AllRecoveredItemsPage></AllRecoveredItemsPage>,
+                element : <PrivateRoute><AllRecoveredItemsPage></AllRecoveredItemsPage></PrivateRoute>,
                 loader: ()=> fetch('http://localhost:3000/addRecoveredItemInfo')
+            },
+            {
+                path: '*',
+                element: <ErrorPage></ErrorPage>
             }
         ]
     },
