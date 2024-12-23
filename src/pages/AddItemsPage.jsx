@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../provider/AuthProvider";
@@ -7,6 +7,8 @@ import Swal from 'sweetalert2'
 const AddItems = () => {
 
     const { user } = useContext(authContext);
+
+    const [selectedDate, setSelectedDate]=useState(new Date());
 
     const handleSubmit = e =>{
         e.preventDefault();
@@ -19,7 +21,18 @@ const AddItems = () => {
         const date = e.target.dateLost.value;
         const userEmail = e.target.userEmail.value;
         const displayName = e.target.displayName.value;
-        const newItems = {postType,thumbnail,title,description,category,location,date,userEmail,displayName};
+
+        const newItems = {
+            postType,
+            thumbnail,
+            title,
+            description,
+            category,
+            location,
+            date,
+            userEmail,
+            displayName,
+        };
 
         // send data to the server
         fetch('http://localhost:3000/addItems', {
@@ -35,7 +48,7 @@ const AddItems = () => {
                 if(data.insertedId){
                     Swal.fire({
                         title: "Good job!",
-                        text: "Campaign added successfully!",
+                        text: "Successfully added Item",
                         icon: "success",
                     });
                     // Clear all fields using form reset
@@ -123,10 +136,10 @@ const AddItems = () => {
                     <label className="block font-semibold mb-2">Date Lost</label>
                     <DatePicker
                         name="dateLost"
-                        selected={new Date()}
+                        selected={selectedDate}
+                        onChange={date=>setSelectedDate(date)}
                         className="border p-2 rounded w-full"
                         dateFormat="yyyy-MM-dd"
-                        onChange={() => {}}
                     />
                 </div>
 
