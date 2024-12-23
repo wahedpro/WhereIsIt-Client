@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -8,6 +8,11 @@ import Swal from "sweetalert2";
 const PostDetailsPage = () => {
     const item = useLoaderData();
     const { user } = useContext(authContext);
+
+    const [showModal, setShowModal] = useState(false);
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [reItems, setReItems]= useState("");
+
     const {
         postType,
         thumbnail,
@@ -18,22 +23,34 @@ const PostDetailsPage = () => {
         date,
         userEmail: postUpdaterEmail,
         displayName: postUpdaterName,
-        status, // Assuming this field exists in the item data to track recovery status
+        _id
     } = item;
+
     const {
         displayName: loginUserName,
         email: loginUserEmail,
         photoURL: loginUserImage,
     } = user;
 
-    // State to handle modal visibility and form data
-    const [showModal, setShowModal] = useState(false);
-    const [selectedDate, setSelectedDate] = useState(null);
+    // Example function to check if _id exists in reItems
+    const checkIdExists = (_id) => {
+        const exists = reItems.some(item => item._id === _id);
+        return exists;
+    };
+
+
+    useEffect(() => {
+        fetch("http://localhost:3000/addRecoveredItemInfo")
+        .then(res => res.json())
+        .then(data => setReItems(data))
+    },[])
+
+    console.log(reItems.length);
 
     // Toggle modal visibility with validation for recovered items
     const handleButtonClick = () => {
-        const itemStatus = status || "notRecovered"; // Default to "notRecovered" if status is undefined
-        if (itemStatus === "recovered") {
+
+        if (checkIdExists(_id)) {
             Swal.fire({
                 title: "Item already recovered",
                 text: "This item has already been marked as recovered.",
@@ -43,8 +60,6 @@ const PostDetailsPage = () => {
         }
         setShowModal(true);
     };
-
-    console.log("status is",status);
 
     // Handle form submission
     const handleSubmit = (event) => {
@@ -63,7 +78,6 @@ const PostDetailsPage = () => {
             recoveredDisplayName,
             recoveredUserEmail,
             recoveredUserImg,
-            status: "recovered",
         };
 
         console.log(recoveredItemInfo);
