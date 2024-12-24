@@ -24,7 +24,7 @@ const UpdateItemsPage = () => {
         const updatedItem = { postType, thumbnail, title, description, category, location, date, userEmail, displayName };
 
         // Send updated data to the server
-        fetch(`http://localhost:3000/addItems/${item._id}`, {
+        fetch(`https://where-is-it-server-six.vercel.app/addItems/${item._id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,11 +1,11 @@
 const HowItWorks = () => {
     return (
-        <div className="py-12 bg-white">
+        <div className="py-12 bg-white border my-10">
             <h2 className="text-2xl font-semibold text-center mb-8">How It Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 px-4 md:px-16">
                 <div className="text-center">
                     <div className="mb-4">
-                        <img src="https://via.placeholder.com/100" alt="Report Icon" className="mx-auto" />
+                        <img src="https://i.ibb.co.com/0cSQKGf/1.png" alt="Report Icon" className="mx-auto w-[25%]" />
                     </div>
                     <h3 className="font-semibold text-lg">Report an Item</h3>
                     <p className="text-sm text-gray-600 mt-2">
@@ -14,7 +14,7 @@ const HowItWorks = () => {
                 </div>
                 <div className="text-center">
                     <div className="mb-4">
-                        <img src="https://via.placeholder.com/100" alt="Browse Icon" className="mx-auto" />
+                        <img src="https://i.ibb.co.com/BHDMxdK/2.png" alt="Browse Icon" className="mx-auto w-[25%]" />
                     </div>
                     <h3 className="font-semibold text-lg">Browse Listings</h3>
                     <p className="text-sm text-gray-600 mt-2">
@@ -23,7 +23,7 @@ const HowItWorks = () => {
                 </div>
                 <div className="text-center">
                     <div className="mb-4">
-                        <img src="https://via.placeholder.com/100" alt="Connect Icon" className="mx-auto" />
+                        <img src="https://i.ibb.co.com/n6w0LXj/3.png" alt="Connect Icon" className="mx-auto w-[25%]" />
                     </div>
                     <h3 className="font-semibold text-lg">Connect & Recover</h3>
                     <p className="text-sm text-gray-600 mt-2">

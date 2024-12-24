@@ -20,7 +20,7 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <HomePage></HomePage>,
-                loader: ()=> fetch('http://localhost:3000/addItems')
+                loader: ()=> fetch('https://where-is-it-server-six.vercel.app/addItems')
             },
             {
                 path: "register",
@@ -33,12 +33,12 @@ const router = createBrowserRouter([
             {
                 path: "allItems",
                 element: <LostAndFoundItemsPage></LostAndFoundItemsPage>,
-                loader: ()=> fetch('http://localhost:3000/addItems')
+                loader: ()=> fetch('https://where-is-it-server-six.vercel.app/addItems')
             },
             {
                 path: 'Items/:id',
                 element: <PrivateRoute><PostDetailsPage></PostDetailsPage></PrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:3000/itemDetails/${params.id}`),
+                loader: ({params})=>fetch(`https://where-is-it-server-six.vercel.app/itemDetails/${params.id}`),
             },
             {
                 path: "addItems",
@@ -47,12 +47,12 @@ const router = createBrowserRouter([
             {
                 path: "myItems",
                 element : <PrivateRoute><ManageMyItemsPage></ManageMyItemsPage></PrivateRoute>,
-                loader: ()=> fetch('http://localhost:3000/addItems')
+                loader: ()=> fetch('https://where-is-it-server-six.vercel.app/addItems')
             },
             {
                 path: 'updateItems/:id',
                 element: <PrivateRoute><UpdateItemsPage></UpdateItemsPage></PrivateRoute>,
-                loader: ({params})=>fetch(`http://localhost:3000/addItems/${params.id}`),
+                loader: ({params})=>fetch(`https://where-is-it-server-six.vercel.app/addItems/${params.id}`),
             },
             {
                 path: "allRecovered",

@@ -24,7 +24,7 @@ const MyItems = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 // delete from the database
-                fetch(`http://localhost:3000/addItems/${id}`, {
+                fetch(`https://where-is-it-server-six.vercel.app/addItems/${id}`, {
                     method: 'DELETE'
                 })
                     .then((res) => res.json())

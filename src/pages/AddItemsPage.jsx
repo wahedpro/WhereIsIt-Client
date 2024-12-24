@@ -35,7 +35,7 @@ const AddItems = () => {
         };
 
         // send data to the server
-        fetch('http://localhost:3000/addItems', {
+        fetch('https://where-is-it-server-six.vercel.app/addItems', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Corrected header key

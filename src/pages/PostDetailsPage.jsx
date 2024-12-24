@@ -39,7 +39,7 @@ const PostDetailsPage = () => {
     };
 
     useEffect(() => {
-        fetch("http://localhost:3000/AllRecoveredItemInfo")
+        fetch("https://where-is-it-server-six.vercel.app/AllRecoveredItemInfo")
         .then(res => res.json())
         .then(data => setReItems(data))
     },[])
@@ -78,7 +78,7 @@ const PostDetailsPage = () => {
         };
 
         // Send data to the server
-        fetch("http://localhost:3000/addRecoveredItemInfo", {
+        fetch("https://where-is-it-server-six.vercel.app/addRecoveredItemInfo", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

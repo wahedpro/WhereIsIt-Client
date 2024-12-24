@@ -1,47 +1,61 @@
 import { FaFacebook, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
 
-
 const Footer = () => {
     return (
-        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {/* Links Section */}
-            <div className="flex flex-col items-center md:items-start">
-                <h1 className="text-xl mb-4 font-bold">Links</h1>
-                <a href="#" className="hover:underline">Privacy Policy</a>
-                <a href="#" className="hover:underline">Terms Of Service</a>
-                <a href="#" className="hover:underline">About</a>
-                <a href="#" className="hover:underline">Contact</a>
-                <a href="#" className="hover:underline">Support Center</a>
-            </div>
+        <footer className="bg-gray-800 text-gray-300 py-5">
+            <div className="container mx-auto px-6 md:px-12 lg:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                {/* Company Info */}
+                <div>
+                    <h2 className="text-xl font-semibold text-white mb-4">WhereIsIt</h2>
+                    <p className="text-sm">
+                        A platform connecting individuals who have lost personal belongings with those who may have found them.
+                    </p>
+                </div>
 
-            {/* Social Media Section */}
-            <div className="flex flex-col items-center md:items-start">
-                <h1 className="text-xl mb-4 font-bold">Contact With Us</h1>
-                <div className="flex gap-4">
-                    <a href="#" className="hover:text-gray-200"><FaFacebook size={25} /></a>
-                    <a href="#" className="hover:text-gray-200"><FaTwitter size={25} /></a>
-                    <a href="#" className="hover:text-gray-200"><FaInstagram size={25} /></a>
-                    <a href="#" className="hover:text-gray-200"><FaYoutube size={25} /></a>
+                {/* Links */}
+                <div>
+                    <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
+                    <ul className="space-y-2">
+                        <li><a href="#" className="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" className="hover:text-white">Terms Of Service</a></li>
+                        <li><a href="#" className="hover:text-white">About</a></li>
+                        <li><a href="#" className="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+
+                {/* Social Media */}
+                <div>
+                    <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
+                    <div className="flex space-x-4">
+                        <a href="#" className="hover:text-white"><FaFacebook size={24} /></a>
+                        <a href="#" className="hover:text-white"><FaTwitter size={24} /></a>
+                        <a href="#" className="hover:text-white"><FaInstagram size={24} /></a>
+                        <a href="#" className="hover:text-white"><FaYoutube size={24} /></a>
+                    </div>
+                </div>
+
+                {/* Newsletter */}
+                <div>
+                    <h3 className="text-lg font-semibold text-white mb-4">Newsletter</h3>
+                    <p className="text-sm mb-4">Subscribe to our newsletter for updates.</p>
+                    <form className="flex flex-col space-y-3">
+                        <input
+                            type="email"
+                            placeholder="Your email address"
+                            className="w-full py-2 px-3 rounded bg-gray-700 text-gray-300 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        />
+                        <button className="w-full py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+                            Subscribe
+                        </button>
+                    </form>
                 </div>
             </div>
 
-            {/* Subscribe Section */}
-            <div className="flex flex-col items-center md:items-start">
-                <h1 className="text-xl mb-4 font-bold">Subscribe</h1>
-                <p className="text-center md:text-left mb-4">
-                    Join our newsletter to get the latest updates from us.
-                </p>
-                <input
-                    className={'py-2 px-3 w-full max-w-xs border rounded-lg mb-4 focus:outline-none'}
-                    type="email"
-                    name="email"
-                    placeholder="Enter Your Email"
-                />
-                <button className="bg-white text-[#2ecc71] px-5 py-2 rounded-lg hover:bg-gray-200">
-                    Subscribe
-                </button>
+            {/* Footer Bottom */}
+            <div className="mt-6 border-t border-gray-700 pt-6 text-center text-sm text-gray-500">
+                <p>© {new Date().getFullYear()} WhereIsIt. All Rights Reserved.</p>
             </div>
-        </div>
+        </footer>
     );
 };
 

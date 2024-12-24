@@ -55,11 +55,11 @@ const AuthProvider = ({ children }) => {
     
             if (currentUser?.email) {
                 const user = { email: currentUser.email };
-                axios.post('http://localhost:3000/jwt', user, { withCredentials: true })
+                axios.post('https://where-is-it-server-six.vercel.app/jwt', user, { withCredentials: true })
                     .then(res => console.log("JWT token set:", res.data))
                     .catch(err => console.error("JWT error:", err));
             } else {
-                axios.post('http://localhost:3000/logout', {}, { withCredentials: true })
+                axios.post('https://where-is-it-server-six.vercel.app/logout', {}, { withCredentials: true })
                     .then(res => console.log("Logout success:", res.data))
                     .catch(err => console.error("Logout error:", err));
             }
