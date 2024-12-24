@@ -38,14 +38,11 @@ const PostDetailsPage = () => {
         return exists;
     };
 
-
     useEffect(() => {
-        fetch("http://localhost:3000/addRecoveredItemInfo")
+        fetch("http://localhost:3000/AllRecoveredItemInfo")
         .then(res => res.json())
         .then(data => setReItems(data))
     },[])
-
-    console.log(reItems.length);
 
     // Toggle modal visibility with validation for recovered items
     const handleButtonClick = () => {
@@ -79,8 +76,6 @@ const PostDetailsPage = () => {
             recoveredUserEmail,
             recoveredUserImg,
         };
-
-        console.log(recoveredItemInfo);
 
         // Send data to the server
         fetch("http://localhost:3000/addRecoveredItemInfo", {

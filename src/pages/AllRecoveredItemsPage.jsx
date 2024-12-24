@@ -1,14 +1,19 @@
-import { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { authContext } from "../provider/AuthProvider";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllRecoveredItemsPage = () => {
-    const data = useLoaderData();
     const { user } = useContext(authContext);
     const { email } = user;
 
-    // Filter items added by the logged-in user
-    const receivedItems = data.filter((item) => item.recoveredUserEmail === email);
+    const axiosSecure = useAxiosSecure()
+
+    const [receivedItems, setReceivedItems] = useState([]);
+
+    useEffect(()=>{
+        axiosSecure.get(`/addRecoveredItemInfo?email=${email}`)
+        .then(res => setReceivedItems(res.data))
+    },[email])
 
     return (
         <div className="p-8">
