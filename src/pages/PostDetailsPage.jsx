@@ -4,8 +4,13 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../hooks/useTitle";
 
 const PostDetailsPage = () => {
+
+    // for the title
+    useTitle('Post Details Page');
+
     const item = useLoaderData();
     const { user } = useContext(authContext);
 

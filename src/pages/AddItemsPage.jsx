@@ -3,8 +3,13 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../provider/AuthProvider";
 import Swal from 'sweetalert2';
+import useTitle from "../hooks/useTitle";
 
 const AddItems = () => {
+
+    // for the title
+    useTitle('Add Items Page');
+
     const { user } = useContext(authContext);
     const [selectedDate, setSelectedDate] = useState(new Date());
 

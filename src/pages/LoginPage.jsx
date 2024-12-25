@@ -3,8 +3,13 @@ import { NavLink, useNavigate} from "react-router-dom";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { authContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import useTitle from "../hooks/useTitle";
 
 const LoginPage = () => {
+
+    // for the title
+    useTitle('LoginPage');
+
     const {loginUser, LoginWithGoogle} = useContext(authContext);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);

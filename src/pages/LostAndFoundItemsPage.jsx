@@ -2,20 +2,29 @@ import ItemCard from "../components/ItemCard/ItemCard";
 import { IoMdSearch } from "react-icons/io";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useTitle from "../hooks/useTitle";
 
 const LostAndFoundItemsPage = () => {
+
+    // for the title
+    useTitle('Lost And Found Items Page');
+
     const [items, setItems] = useState([]);
     const [search, setSearch] = useState('');
     const [page, setPage] = useState(1);  // Track the current page
     const [totalItems, setTotalItems] = useState(0); // Track total number of items for pagination
     const itemsPerPage = 6;  // Number of items per page
 
+    const [loading, setLoading] = useState(false);
+
     // Fetch items based on search and pagination
     useEffect(() => {
+        setLoading(true);
         const fetchAllItems = async () => {
             const { data } = await axios.get(`https://where-is-it-server-six.vercel.app/allItems?search=${search}&page=${page}&limit=${itemsPerPage}`);
             setItems(data.items); 
-            setTotalItems(data.total);  
+            setTotalItems(data.total);
+            setLoading(false);
         };
         fetchAllItems();
     }, [search, page]);
@@ -43,12 +52,19 @@ const LostAndFoundItemsPage = () => {
             </div>
 
             {/* Show products */}
+            
+            {loading ? ( // Show spinner when loading
+                <div className="flex justify-center items-center h-screen">
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+                </div>
+            ) : (
             <div className="w-[95%] mx-auto py-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {items.map((item, index) => (
                     <ItemCard key={index} item={item} />
                 ))}
             </div>
-
+                )
+            }
             {/* Pagination Controls */}
             <div className="flex justify-center space-x-4 py-5">
                 <button

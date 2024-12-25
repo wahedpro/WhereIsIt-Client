@@ -10,7 +10,7 @@ const axiosInstance = axios.create({
 
 const useAxiosSecure = () => {
 
-    const {logoutUser}  = useContext(authContext);
+    const { logoutUser } = useContext(authContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -28,8 +28,7 @@ const useAxiosSecure = () => {
             }
             return Promise.reject(error);
         })
-    }, [])
-
+    }, [logoutUser, navigate])
 
     return axiosInstance;
 };

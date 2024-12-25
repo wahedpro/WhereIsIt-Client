@@ -2,8 +2,13 @@ import { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { authContext } from "../provider/AuthProvider";
 import Swal from "sweetalert2";
+import useTitle from "../hooks/useTitle";
 
 const MyItems = () => {
+
+    // for the title
+    useTitle('Manage My Items Page');
+
     const items = useLoaderData(); // All items loaded from the loader
     const { user } = useContext(authContext); // Current user's email from context
     const { email } = user;

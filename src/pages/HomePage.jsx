@@ -4,8 +4,13 @@ import Banner from "../components/Banner/Banner";
 import HowItWorks from "../components/HowItWorks/HowItWorks";
 import { useEffect, useState } from "react";
 import Testimonials from "../components/Testimonials/Testimonials";
+import useTitle from "../hooks/useTitle";
 
 const HomePage = () => {
+    
+    // for the title
+    useTitle('HomePage');
+
     const navigate = useNavigate();
     const items = useLoaderData();
 

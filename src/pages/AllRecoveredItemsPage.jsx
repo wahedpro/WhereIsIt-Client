@@ -3,18 +3,33 @@ import { authContext } from "../provider/AuthProvider";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { IoGridOutline } from "react-icons/io5";
 import { FaTable } from "react-icons/fa";
+import useTitle from "../hooks/useTitle";
 
 const AllRecoveredItemsPage = () => {
+    // for the title
+    useTitle('All Recovered Items Page');
+
     const { user } = useContext(authContext);
     const { email } = user;
 
     const axiosSecure = useAxiosSecure();
     const [receivedItems, setReceivedItems] = useState([]);
     const [isTableLayout, setIsTableLayout] = useState(false);
+    const [loading, setLoading] = useState(true); // Start with loading = true
 
     useEffect(() => {
-        axiosSecure.get(`/addRecoveredItemInfo?email=${email}`)
-            .then(res => setReceivedItems(res.data));
+        setLoading(true);
+        axiosSecure
+            .get(`/addRecoveredItemInfo?email=${email}`)
+            .then((res) => {
+                setReceivedItems(res.data);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            })
+            .finally(() => {
+                setLoading(false); // Stop loading after fetch
+            });
     }, [email, axiosSecure]);
 
     return (
@@ -29,7 +44,7 @@ const AllRecoveredItemsPage = () => {
                             : "bg-blue-500 text-white hover:bg-blue-600"
                     } transition`}
                 >
-                    <FaTable size={20}/>
+                    <FaTable size={20} />
                 </button>
                 <button
                     onClick={() => setIsTableLayout(false)}
@@ -39,10 +54,15 @@ const AllRecoveredItemsPage = () => {
                             : "bg-blue-500 text-white hover:bg-blue-600"
                     } transition`}
                 >
-                    <IoGridOutline size={20}/>
+                    <IoGridOutline size={20} />
                 </button>
             </div>
-            {receivedItems.length > 0 ? (
+
+            {loading ? ( // Show spinner while loading
+                <div className="flex justify-center items-center h-48">
+                    <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-blue-500"></div>
+                </div>
+            ) : receivedItems.length > 0 ? (
                 isTableLayout ? (
                     <div className="overflow-x-auto">
                         <table className="table-auto w-full border-collapse border border-gray-300">

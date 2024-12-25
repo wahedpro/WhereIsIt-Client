@@ -3,8 +3,13 @@ import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useNavigate, NavLink } from "react-router-dom";
 import { authContext } from "../provider/AuthProvider";
 import toast from "react-hot-toast";
+import useTitle from "../hooks/useTitle";
 
 const RegisterPage = () => {
+
+    // for the title
+    useTitle('RegisterPage');
+
     const { createUser, manageProfile } = useContext(authContext);
     const navigate = useNavigate();
 

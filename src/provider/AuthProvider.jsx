@@ -49,30 +49,48 @@ const AuthProvider = ({ children }) => {
         loading,
     };
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-            setUser(currentUser);
+useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+        setUser(currentUser);
+        if (currentUser?.email) {
+            const user = { email: currentUser.email };
+            axios.post('https://where-is-it-server-six.vercel.app/jwt', user, { withCredentials: true })
+        } else {
+            axios.post('https://where-is-it-server-six.vercel.app/logout', {}, { withCredentials: true })
+        }
+        setLoading(false);
+    });
+
+    return () => unsubscribe();
+}, []);
+
+
+
+
+    // useEffect(() => {
+    //     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    //         setUser(currentUser);
     
-            if (currentUser?.email) {
-                const user = { email: currentUser.email };
-                axios.post('https://where-is-it-server-six.vercel.app/jwt', user, { withCredentials: true })
-                    .then(res => console.log("JWT token set:", res.data))
-                    .catch(err => console.error("JWT error:", err));
-            } else {
-                axios.post('https://where-is-it-server-six.vercel.app/logout', {}, { withCredentials: true })
-                    .then(res => console.log("Logout success:", res.data))
-                    .catch(err => console.error("Logout error:", err));
-            }
-            setLoading(false);
-        });
+    //         if (currentUser?.email) {
+    //             const user = { email: currentUser.email };
+    //             axios.post('https://where-is-it-server-six.vercel.app/jwt', user, { withCredentials: true })
+    //                 .then(res => console.log("JWT token set:", res.data))
+    //                 .catch(err => console.error("JWT error:", err));
+    //         } else {
+    //             axios.post('https://where-is-it-server-six.vercel.app/logout', {}, { withCredentials: true })
+    //                 .then(res => console.log("Logout success:", res.data))
+    //                 .catch(err => console.error("Logout error:", err));
+    //         }
+    //         setLoading(false);
+    //     });
     
-        return () => unsubscribe();
-    }, []);
+    //     return () => unsubscribe();
+    // }, []);
 
     if (loading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#2ecc71]"></div>
+                <div className="w-16 h-16 border-4 border-dashed rounded-full animate-spin border-[#6666F2]"></div>
             </div>
         );
     }
