@@ -33,7 +33,6 @@ const router = createBrowserRouter([
             {
                 path: "allItems",
                 element: <LostAndFoundItemsPage></LostAndFoundItemsPage>,
-                loader: ()=> fetch('https://where-is-it-server-six.vercel.app/addItems')
             },
             {
                 path: 'Items/:id',

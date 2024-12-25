@@ -8,10 +8,6 @@ import Testimonials from "../components/Testimonials/Testimonials";
 const HomePage = () => {
     const navigate = useNavigate();
     const items = useLoaderData();
-    // Sort items by the most recent date
-    // const sortedItems = items
-    //     .sort((a, b) => new Date(b.date) - new Date(a.date))
-    //     .slice(0, 6); // Limit to 6 items
 
     const [sortedItems, setSortedItems] = useState([]);
 

@@ -1,24 +1,46 @@
 import PropTypes from "prop-types";
 import { IoLocationOutline } from "react-icons/io5";
+import { TbCategory } from "react-icons/tb";
 import { Link } from "react-router-dom";
-
 
 const ItemCard = ({ item }) => {
     return (
-        <div className="">
-            <div className="relative border rounded-lg shadow-md p-4">
+        <div className="flex flex-col border rounded-lg transition-shadow bg-white overflow-hidden">
+            {/* Thumbnail Section */}
+            <div className="relative">
                 <img
                     src={item.thumbnail}
                     alt={item.title}
-                    className="w-full object-cover rounded-md mb-4"
+                    className="w-full h-52 object-cover"
                 />
-                <p className="absolute top-5 left-5 text-xl border border-red-600 bg-gray-600 px-3 py-1 rounded-lg text-white">{item.postType}</p>
-                <h3 className="text-lg font-semibold">{item.title}</h3>
-                <p className="text-sm text-gray-500">{item.category}</p>
-                <p className="text-sm flex items-center gap-2"><IoLocationOutline size={15} /> {item.location}</p>
-                <button className="mt-3 px-4 py-2 bg-[#2ecc71] text-white rounded hover:bg-[#1ebb9e]">
-                    <Link to={`/Items/${item._id}`}>View Details</Link>
-                </button>
+                <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full uppercase shadow">
+                    {item.postType}
+                </span>
+            </div>
+
+            {/* Content Section */}
+            <div className="flex flex-col p-5 flex-grow">
+                <h3 className="text-lg font-bold text-gray-800 mb-2 truncate">{item.title}</h3>
+                
+                <div className="flex items-center text-gray-600 text-sm mb-2">
+                    <TbCategory size={18} className="text-gray-800" />
+                    <span className="ml-2 truncate">{item.category}</span>
+                </div>
+
+                <div className="flex items-center text-gray-600 text-sm mb-4">
+                    <IoLocationOutline size={18} className="text-gray-800" />
+                    <span className="ml-2 truncate">{item.location}</span>
+                </div>
+
+                {/* Button Section */}
+                <div className="mt-auto">
+                    <Link
+                        to={`/Items/${item._id}`}
+                        className="block text-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white text-sm font-semibold py-2  transition-colors duration-300"
+                    >
+                        View Details
+                    </Link>
+                </div>
             </div>
         </div>
     );
@@ -31,7 +53,7 @@ ItemCard.propTypes = {
         category: PropTypes.string.isRequired,
         location: PropTypes.string.isRequired,
         postType: PropTypes.string.isRequired,
-        _id:PropTypes.string._id
+        _id: PropTypes.string.isRequired,
     }).isRequired,
 };
 

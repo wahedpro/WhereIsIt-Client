@@ -2,7 +2,7 @@ const Testimonials = () => {
     const testimonials = [
         {
             name: "Alexa Rodríguez",
-            role: "Web Developer",
+            role: "Student",
             image: "https://i.ibb.co.com/pn13Rpb/3.jpg",
             review:
                 "A life-changing experience! This platform helped me find my lost items effortlessly.",
@@ -10,7 +10,7 @@ const Testimonials = () => {
         },
         {
             name: "Emily Chen",
-            role: "UI/UX Designer",
+            role: "Web Designer",
             image: "https://i.ibb.co.com/0sdCLy9/2.jpg",
             review:
                 "Such a great platform! It connected me with the person who found my lost item in no time.",
