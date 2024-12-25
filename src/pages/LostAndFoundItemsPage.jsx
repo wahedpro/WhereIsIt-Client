@@ -13,7 +13,7 @@ const LostAndFoundItemsPage = () => {
     // Fetch items based on search and pagination
     useEffect(() => {
         const fetchAllItems = async () => {
-            const { data } = await axios.get(`http://localhost:3000/allItems?search=${search}&page=${page}&limit=${itemsPerPage}`);
+            const { data } = await axios.get(`https://where-is-it-server-six.vercel.app/allItems?search=${search}&page=${page}&limit=${itemsPerPage}`);
             setItems(data.items); 
             setTotalItems(data.total);  
         };

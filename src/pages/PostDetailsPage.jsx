@@ -11,7 +11,7 @@ const PostDetailsPage = () => {
 
     const [showModal, setShowModal] = useState(false);
     const [selectedDate, setSelectedDate] = useState(new Date());
-    const [reItems, setReItems]= useState("");
+    const [reItems, setReItems] = useState("");
 
     const {
         postType,
@@ -40,9 +40,9 @@ const PostDetailsPage = () => {
 
     useEffect(() => {
         fetch("https://where-is-it-server-six.vercel.app/AllRecoveredItemInfo")
-        .then(res => res.json())
-        .then(data => setReItems(data))
-    },[])
+            .then(res => res.json())
+            .then(data => setReItems(data))
+    }, [])
 
     // Toggle modal visibility with validation for recovered items
     const handleButtonClick = () => {
@@ -106,9 +106,9 @@ const PostDetailsPage = () => {
 
     return (
         <div className="py-5 px-5">
-            <div className="flex">
+            <div className="lg:flex">
                 {/* Card Image */}
-                <img src={thumbnail} alt={title} className="w-[40%] object-cover" />
+                <img src={thumbnail} alt={title} className="w-full lg:w-[40%] object-cover" />
 
                 <div className="p-5">
                     {/* Card Content */}
@@ -125,7 +125,7 @@ const PostDetailsPage = () => {
                     {/* Conditional Button */}
                     <button
                         onClick={handleButtonClick}
-                        className="mt-4 px-5 py-2 rounded bg-[#2ecc71] hover:bg-[#32b96b]"
+                        className="mt-4 px-5 py-2 rounded text-white bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                     >
                         {postType === "Lost" ? "Found This!" : postType === "Found" ? "This is Mine!" : "Take Action"}
                     </button>
@@ -179,19 +179,12 @@ const PostDetailsPage = () => {
                                     <img src={loginUserImage} name="recoveredUserImg" alt="User" className="w-16 h-16 rounded-full" />
                                 </div>
                             </div>
-                            <button
-                                type="submit"
-                                className="mt-4 px-5 py-2 rounded bg-[#2ecc71] hover:bg-[#32b96b]"
-                            >
-                                Submit
-                            </button>
+
+                            <div className="flex justify-between">
+                                <button type="submit" className="mt-4 px-5 py-2 rounded bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700">Submit</button>
+                                <button onClick={() => setShowModal(false)} className="mt-2 text-white bg-red-400 px-5 py-2 rounded-md" > Close </button>
+                            </div>
                         </form>
-                        <button
-                            onClick={() => setShowModal(false)}
-                            className="mt-2 text-red-500"
-                        >
-                            Close
-                        </button>
                     </div>
                 </div>
             )}

@@ -68,17 +68,17 @@ const LoginPage = () => {
                         {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
                     </button>
                 </div>
-                <button disabled={loading} className="text-white bg-[#2ecc71] px-4 py-2 hover:bg-[#32b96b] transition">
+                <button disabled={loading} className="text-white bg-[#6666F2] px-4 py-2 hover:bg-[#5757d8] transition">
                     {loading ? "Logging in..." : "Login"}
                 </button>
             </form>
 
             {/* Additional Options */}
             <div className="flex flex-col py-3">
-                <button onClick={googleLogin} disabled={loading} className="p-3 border mb-3 bg-white  text-black hover:bg-[#32b96b] hover:text-white transition">
+                <button onClick={googleLogin} disabled={loading} className="p-3 border mb-3 bg-white  text-black hover:bg-[#6666F2] hover:text-white transition">
                     {loading ? "Logging in..." : "Login with Google"}
                 </button>
-                <p>
+                <p className="text-center">
                     Do not have an account? <NavLink to="/register" className="text-blue-400">Register Now</NavLink>
                 </p>
             </div>

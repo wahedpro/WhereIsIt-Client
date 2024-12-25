@@ -2,17 +2,15 @@ import { useContext, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../provider/AuthProvider";
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
 const AddItems = () => {
-
     const { user } = useContext(authContext);
+    const [selectedDate, setSelectedDate] = useState(new Date());
 
-    const [selectedDate, setSelectedDate]=useState(new Date());
-
-    const handleSubmit = e =>{
+    const handleSubmit = e => {
         e.preventDefault();
-        const postType = e.target.postType.value; 
+        const postType = e.target.postType.value;
         const thumbnail = e.target.thumbnail.value;
         const title = e.target.title.value;
         const description = e.target.description.value;
@@ -34,84 +32,81 @@ const AddItems = () => {
             displayName,
         };
 
-        // send data to the server
         fetch('https://where-is-it-server-six.vercel.app/addItems', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json' // Corrected header key
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify(newItems), // Sending the newCampaign object as JSON
+            body: JSON.stringify(newItems),
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
-                if(data.insertedId){
+                if (data.insertedId) {
                     Swal.fire({
                         title: "Good job!",
                         text: "Successfully added Item",
                         icon: "success",
                     });
-                    // Clear all fields using form reset
                     e.target.reset();
                 }
             })
             .catch((error) => {
-                console.error('Error:', error); // Handle any network errors
+                console.error('Error:', error);
             });
-    }
+    };
 
     return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-2xl font-semibold mb-4">Add Lost & Found Item</h1>
-            <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="max-w-4xl mx-auto px-4 py-8">
+            <h1 className="text-3xl font-semibold mb-6 text-center">Add Lost & Found Item</h1>
+            <form onSubmit={handleSubmit} className="space-y-6 border bg-white p-6 shadow-lg">
                 {/* Post Type */}
-                <div>
-                    <label className="block font-semibold mb-2">Post Type</label>
-                    <select name="postType" className="border p-2 rounded w-full" defaultValue="Lost">
+                <div className="flex flex-col">
+                    <label className="font-medium mb-2">Post Type</label>
+                    <select name="postType" className="border px-5 py-2 focus:outline-none focus:ring-2 focus:ring-[#6666F2]">
                         <option value="Lost">Lost</option>
                         <option value="Found">Found</option>
                     </select>
                 </div>
 
                 {/* Thumbnail */}
-                <div>
-                    <label className="block font-semibold mb-2">Thumbnail</label>
+                <div className="flex flex-col">
+                    <label className="font-medium mb-2">Thumbnail URL</label>
                     <input
                         type="text"
                         name="thumbnail"
-                        className="border p-2 rounded w-full"
+                        className="border px-5 py-2 focus:outline-none focus:ring-2 focus:ring-[#6666F2]"
                         required
                     />
                 </div>
 
                 {/* Title */}
-                <div>
-                    <label className="block font-semibold mb-2">Title</label>
+                <div className="flex flex-col">
+                    <label className="font-medium mb-2">Title</label>
                     <input
                         type="text"
                         name="title"
                         placeholder="Enter title"
-                        className="border p-2 rounded w-full"
+                        className="border px-5 py-2 focus:outline-none focus:ring-2 focus:ring-[#6666F2]"
                         required
                     />
                 </div>
 
                 {/* Description */}
-                <div>
-                    <label className="block font-semibold mb-2">Description</label>
+                <div className="flex flex-col">
+                    <label className="font-medium mb-2">Description</label>
                     <textarea
                         name="description"
                         placeholder="Enter description"
-                        className="border p-2 rounded w-full"
+                        className="border px-5 py-2  focus:outline-none focus:ring-2 focus:ring-[#6666F2]"
                         rows="2"
                         required
                     />
                 </div>
 
                 {/* Category */}
-                <div>
-                    <label className="block font-semibold mb-2">Category</label>
-                    <select name="category" className="border p-2 rounded w-full" defaultValue="pets">
+                <div className="flex flex-col">
+                    <label className="font-medium mb-2">Category</label>
+                    <select name="category" className="border px-5 py-2 focus:outline-none focus:ring-2 focus:ring-[#6666F2]">
                         <option value="Pets">Pets</option>
                         <option value="Documents">Documents</option>
                         <option value="Gadgets">Gadgets</option>
@@ -120,51 +115,58 @@ const AddItems = () => {
                 </div>
 
                 {/* Location */}
-                <div>
-                    <label className="block font-semibold mb-2">Location</label>
+                <div className="flex flex-col">
+                    <label className="font-medium mb-2">Location</label>
                     <input
                         type="text"
                         name="location"
                         placeholder="Enter location"
-                        className="border p-2 rounded w-full"
+                        className="border px-5 py-2 focus:outline-none focus:ring-2 focus:ring-[#6666F2]"
                         required
                     />
                 </div>
 
                 {/* Date Lost */}
-                <div>
-                    <label className="block font-semibold mb-2">Date Lost</label>
+                <div className="flex flex-col">
+                    <label className="font-medium mb-2">Date Lost</label>
                     <DatePicker
                         name="dateLost"
                         selected={selectedDate}
-                        onChange={date=>setSelectedDate(date)}
-                        className="border p-2 rounded w-full"
+                        onChange={date => setSelectedDate(date)}
+                        className="border px-5 py-2 focus:outline-none focus:ring-2 focus:ring-[#6666F2]"
                         dateFormat="yyyy-MM-dd"
                     />
                 </div>
 
                 {/* Contact Information */}
-                <div>
-                    <label className="block font-semibold mb-2">Contact Information</label>
-                    <input
-                        type="text"
-                        name="displayName"
-                        value={user.displayName}
-                        readOnly
-                        className="border p-2 rounded w-full bg-gray-100"
-                    />
-                    <input
-                        type="email"
-                        name="userEmail"
-                        value={user.email}
-                        readOnly
-                        className="border p-2 rounded w-full bg-gray-100 mt-2"
-                    />
+                <div className="flex flex-col space-y-4">
+                    <div>
+                        <label className="font-medium mb-2 mr-2">Contact Name</label>
+                        <input
+                            type="text"
+                            name="displayName"
+                            value={user.displayName}
+                            readOnly
+                            className="border px-5 py-2 bg-gray-100"
+                        />
+                    </div>
+                    <div>
+                        <label className="font-medium mb-2 mr-2">Contact Email</label>
+                        <input
+                            type="email"
+                            name="userEmail"
+                            value={user.email}
+                            readOnly
+                            className="border px-5 py-2 bg-gray-100"
+                        />
+                    </div>
                 </div>
 
                 {/* Add Post Button */}
                 <div>
-                    <button type="submit" className="bg-[#2ecc71] text-white px-6 py-2 rounded hover:bg-[#1ebb9e] transition">Add Post</button>
+                    <button type="submit" className="w-full  text-white py-3 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 transition ease-in-out duration-200">
+                        Add Post
+                    </button>
                 </div>
             </form>
         </div>

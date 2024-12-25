@@ -20,7 +20,7 @@ const MyItems = () => {
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Yes, delete it!",
         }).then((result) => {
             if (result.isConfirmed) {
                 // delete from the database
@@ -45,55 +45,68 @@ const MyItems = () => {
     };
 
     return (
-        <div className="py-10">
-            <h1 className="text-2xl font-semibold text-center mb-5">My Items</h1>
+        <div className="container mx-auto px-4 py-8">
+            <h1 className="text-3xl font-semibold text-center mb-8 text-black">My Items</h1>
 
-            <div className="overflow-x-auto">
-                <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-md">
-                    <thead>
-                        <tr className="bg-[#2ecc71] text-left">
-                            <th className="px-6 py-3 border-b border-gray-200 font-medium uppercase tracking-wider">Image</th>
-                            <th className="px-6 py-3 border-b border-gray-200 font-medium uppercase tracking-wider">Item Title</th>
-                            <th className="px-6 py-3 border-b border-gray-200 font-medium uppercase tracking-wider">Category</th>
-                            <th className="px-6 py-3 border-b border-gray-200 font-medium uppercase tracking-wider">Location</th>
-                            <th className="px-6 py-3 border-b border-gray-200 font-medium uppercase tracking-wider">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {itemList.map((item, index) => (
-                            <tr key={index} className="hover:bg-gray-50">
-                                {/* Image */}
-                                <td className="px-6 py-4 border-b border-gray-200">
-                                    <img
-                                        src={item.thumbnail}
-                                        alt={item.title}
-                                        className="w-16 h-16 rounded object-cover"
-                                    />
-                                </td>
-                                {/* Item Title */}
-                                <td className="px-6 py-4 border-b border-gray-200 font-medium text-gray-800">
-                                    {item.title}
-                                </td>
-                                {/* Category */}
-                                <td className="px-6 py-4 border-b border-gray-200 text-gray-600">
-                                    {item.category}
-                                </td>
-                                {/* Location */}
-                                <td className="px-6 py-4 border-b border-gray-200 text-gray-600">
-                                    {item.location}
-                                </td>
-                                {/* Actions */}
-                                <td className="px-6 py-4 border-b border-gray-200 space-x-2">
-                                    <Link to={`/updateItems/${item._id}`}>
-                                        <button className="px-5 py-2 bg-[#2ecc71] text-white rounded-md hover:bg-[#32b96b] transition">Update</button>
-                                    </Link>
-                                    <button onClick={() => handleItemDelete(item._id)} className="px-5 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 transition">Delete</button>
-                                </td>
+            {itemList.length === 0 ? (
+                <div className="text-center text-gray-500 font-medium">
+                    <p>No items available. Add a new item!</p>
+                </div>
+            ) : (
+                <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white border border-gray-200 rounded-lg">
+                        <thead>
+                            <tr className="bg-[#6666F2] text-white">
+                                <th className="px-6 py-3 text-sm font-medium text-left uppercase tracking-wider">Image</th>
+                                <th className="px-6 py-3 text-sm font-medium text-left uppercase tracking-wider">Item Title</th>
+                                <th className="px-6 py-3 text-sm font-medium text-left uppercase tracking-wider">Category</th>
+                                <th className="px-6 py-3 text-sm font-medium text-left uppercase tracking-wider">Location</th>
+                                <th className="px-6 py-3 text-sm font-medium text-left uppercase tracking-wider">Actions</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            {itemList.map((item, index) => (
+                                <tr key={index} className="hover:bg-gray-50">
+                                    {/* Image */}
+                                    <td className="px-2 py-4 border-b border-gray-200">
+                                        <img
+                                            src={item.thumbnail}
+                                            alt={item.title}
+                                            className="w-16 h-16 rounded object-cover"
+                                        />
+                                    </td>
+                                    {/* Item Title */}
+                                    <td className="px-2 py-4 border-b border-gray-200 font-medium text-gray-800">
+                                        {item.title}
+                                    </td>
+                                    {/* Category */}
+                                    <td className="px-2 py-4 border-b border-gray-200 text-gray-600">
+                                        {item.category}
+                                    </td>
+                                    {/* Location */}
+                                    <td className="px-2 py-4 border-b border-gray-200 text-gray-600">
+                                        {item.location}
+                                    </td>
+                                    {/* Actions */}
+                                    <td className="px-2 py-4 border-b border-gray-200 space-x-2">
+                                        <Link to={`/updateItems/${item._id}`}>
+                                            <button className="px-4 py-2 bg-[#6666F2] text-white hover:bg-[#4949cc] transition">
+                                                Update
+                                            </button>
+                                        </Link>
+                                        <button
+                                            onClick={() => handleItemDelete(item._id)}
+                                            className="px-4 py-2 bg-red-500 text-white hover:bg-red-600 transition"
+                                        >
+                                            Delete
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 };

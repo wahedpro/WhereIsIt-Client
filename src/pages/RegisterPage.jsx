@@ -51,7 +51,7 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="w-[95%] lg:w-[50%] mx-auto my-10 py-10 border px-5">
+        <div className="w-[95%] lg:w-[50%] shadow-sm mx-auto my-10 py-10 border px-5">
             <h1 className="text-2xl font-semibold text-center mb-5">Registration</h1>
             <form onSubmit={handleSubmit} className="flex flex-col">
                 <label>Name</label>
@@ -96,12 +96,12 @@ const RegisterPage = () => {
                         {showPassword ? <IoMdEyeOff size={20} /> : <IoMdEye size={20} />}
                     </button>
                 </div>
-                <button className="text-white bg-[#2ecc71] px-4 py-2 hover:bg-[#32b96b] transition mb-3">
+                <button className="text-white bg-[#6666F2] px-4 py-2 hover:bg-[#4545bd] transition mb-3">
                     Register
                 </button>
             </form>
             {error && <p className="text-red-500 mb-5">{error}</p>}
-            <p>
+            <p className="text-center">
                 Already have an account?{" "}
                 <NavLink to="/login" className="text-blue-400">
                     Login Now
