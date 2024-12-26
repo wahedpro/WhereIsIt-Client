@@ -1,16 +1,16 @@
+// LoginPage.js
 import { useContext, useState } from "react";
-import { NavLink, useNavigate} from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { authContext } from "../provider/AuthProvider";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import useTitle from "../hooks/useTitle";
 
 const LoginPage = () => {
-
     // for the title
     useTitle('LoginPage');
 
-    const {loginUser, LoginWithGoogle} = useContext(authContext);
+    const { loginUser, LoginWithGoogle } = useContext(authContext);
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -30,6 +30,7 @@ const LoginPage = () => {
                 navigate('/');
             })
             .catch((err) => {
+                toast.error(err.message || "Invalid email or password.");
                 setError(err.message || "Invalid email or password.");
             })
             .finally(() => {
@@ -51,7 +52,6 @@ const LoginPage = () => {
                 setLoading(false);
             });
     };
-
 
     return (
         <div className="w-[95%] lg:w-[50%] mx-auto my-10 py-10 border px-5">
@@ -90,6 +90,9 @@ const LoginPage = () => {
 
             {/* Error Message */}
             {error && <p className="text-red-500 mt-3">{error}</p>}
+
+            {/* Toast container */}
+            <Toaster />
         </div>
     );
 };

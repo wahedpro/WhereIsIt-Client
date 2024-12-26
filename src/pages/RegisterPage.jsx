@@ -1,12 +1,12 @@
+// RegisterPage.js
 import { useContext, useState } from "react";
 import { IoMdEye, IoMdEyeOff } from "react-icons/io";
 import { useNavigate, NavLink } from "react-router-dom";
 import { authContext } from "../provider/AuthProvider";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import useTitle from "../hooks/useTitle";
 
 const RegisterPage = () => {
-
     // for the title
     useTitle('RegisterPage');
 
@@ -48,9 +48,10 @@ const RegisterPage = () => {
             })
             .then(() => {
                 toast.success("Successfully registered!");
-                navigate("/");
+                navigate("/"); // Navigate to home page after successful registration
             })
             .catch((err) => {
+                toast.error(err.message || "Failed to register. Please try again.");
                 setError(err.message || "Failed to register. Please try again.");
             });
     };
@@ -80,7 +81,7 @@ const RegisterPage = () => {
                     className="p-2 border mb-5"
                     type="text"
                     name="photoURL"
-                    placeholder="Enter your photo url"
+                    placeholder="Enter your photo URL"
                     required
                 />
                 <label>Password</label>
@@ -112,6 +113,9 @@ const RegisterPage = () => {
                     Login Now
                 </NavLink>
             </p>
+
+            {/* Toast Notifications */}
+            <Toaster />
         </div>
     );
 };
