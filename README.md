@@ -23,4 +23,3 @@ The Lost and Found Platform is a web application designed to help individuals co
 - **react-datepicker**: For seamless date selection.
 - **tailwindcss**: For responsive and modern styling.
 - **swiper**: For creating interactive and responsive sliders and carousels.
-

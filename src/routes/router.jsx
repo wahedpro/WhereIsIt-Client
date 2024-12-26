@@ -51,7 +51,7 @@ const router = createBrowserRouter([
             {
                 path: 'updateItems/:id',
                 element: <PrivateRoute><UpdateItemsPage></UpdateItemsPage></PrivateRoute>,
-                loader: ({params})=>fetch(`https://where-is-it-server-six.vercel.app/addItems/${params.id}`),
+                // loader: ({params})=>fetch(`https://where-is-it-server-six.vercel.app/addItems/${params.id}`),
             },
             {
                 path: "allRecovered",

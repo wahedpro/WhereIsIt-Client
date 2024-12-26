@@ -44,7 +44,7 @@ const PostDetailsPage = () => {
     };
 
     useEffect(() => {
-        fetch("https://where-is-it-server-six.vercel.app/AllRecoveredItemInfo")
+        fetch("https://where-is-it-server-six.vercel.app/AllRecoveredItemInfo",{credentials: 'include',})
             .then(res => res.json())
             .then(data => setReItems(data))
     }, [])

@@ -1,5 +1,5 @@
-import { useLoaderData } from "react-router-dom";
-import { useContext, useState } from "react";
+import {useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { authContext } from "../provider/AuthProvider";
@@ -11,9 +11,20 @@ const UpdateItemsPage = () => {
     // for the title
     useTitle('Update Items Page');
 
-    const item = useLoaderData();
+    // const item = useLoaderData();
+
     const { user } = useContext(authContext);
-    const [date, setDate] = useState(new Date(item.date));
+    const [date, setDate] = useState(new Date());
+    const { id } = useParams()
+
+    const [item, setItem] = useState({})
+
+    useEffect(() => {
+        fetch(`https://where-is-it-server-six.vercel.app/addItems/${id}`,{credentials: 'include',})
+            .then(res => res.json())
+            .then(data => setItem(data))
+    }, [id])
+
 
     const handleUpdateItem = e => {
         e.preventDefault();
@@ -34,6 +45,7 @@ const UpdateItemsPage = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(updatedItem),
         })
             .then((res) => res.json())

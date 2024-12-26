@@ -42,6 +42,7 @@ const AddItems = () => {
             headers: {
                 'Content-Type': 'application/json'
             },
+            credentials: 'include',
             body: JSON.stringify(newItems),
         })
             .then((res) => res.json())
