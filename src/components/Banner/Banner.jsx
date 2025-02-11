@@ -25,7 +25,7 @@ const Banner = () => {
                         />
                         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-40 ">
                             <div className="text-center px-4 md:px-6 opacity-90">
-                                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+                                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold mb-2">
                                     Welcome to Our Platform
                                 </h2>
                                 <p className="text-white text-lg sm:text-xl md:text-2xl italic">
@@ -44,7 +44,7 @@ const Banner = () => {
                         />
                         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-40 ">
                             <div className="text-center px-4 md:px-6 opacity-90">
-                                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+                                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold mb-2">
                                     Find What You Lost
                                 </h2>
                                 <p className="text-white text-lg sm:text-xl md:text-2xl italic">
@@ -63,7 +63,7 @@ const Banner = () => {
                         />
                         <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-40 ">
                             <div className="text-center px-4 md:px-6 opacity-90">
-                                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold mb-4">
+                                <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-semibold mb-2">
                                     Helping You Connect
                                 </h2>
                                 <p className="text-white text-lg sm:text-xl md:text-2xl italic">

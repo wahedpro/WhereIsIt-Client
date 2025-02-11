@@ -35,7 +35,7 @@ const Navbar = () => {
         <>
             {/* Fixed Navbar */}
             <div className="fixed lg:w-[85%] w-full mx-auto bg-white z-50">
-                <div className="container mx-auto flex justify-between items-center py-4 px-5 border">
+                <div className="container mx-auto flex justify-between items-center py-4 px-5 border-b-2">
                     {/* Website Name */}
                     <NavLink to="/" className="font-semibold text-2xl text-gray-800 hover:text-[#6666F2]">
                         WhereIsIt
@@ -80,7 +80,7 @@ const Navbar = () => {
 
                                 {/* Dropdown */}
                                 {isDropdownOpen && (
-                                    <div className="absolute top-12 right-0 bg-white shadow-md rounded p-4 flex-col gap-2 items-start w-40 z-50">
+                                    <div className="absolute top-12 lg:right-0 -right-40 bg-white shadow-md rounded p-4 flex-col gap-2 items-start w-56 z-50">
                                         <NavLink
                                             to="/addItems"
                                             className="block px-2 py-1 text-gray-700 hover:bg-gray-200 rounded"
@@ -138,10 +138,10 @@ const Navbar = () => {
                         {/* profile images */}
                         <img
                             className="w-10 h-10 rounded-full cursor-pointer border border-gray-200"
-                            src={user.photoURL}
+                            src={user?.photoURL}
                             alt="User Profile"
                             onClick={toggleDropdown}
-                            title={user.displayName}
+                            title={user?.displayName}
                         />
                         <button
                             className="text-gray-700 focus:outline-none"

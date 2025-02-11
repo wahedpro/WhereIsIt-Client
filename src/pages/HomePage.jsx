@@ -7,7 +7,7 @@ import Testimonials from "../components/Testimonials/Testimonials";
 import useTitle from "../hooks/useTitle";
 
 const HomePage = () => {
-    
+
     // for the title
     useTitle('HomePage');
 
@@ -19,8 +19,8 @@ const HomePage = () => {
     useEffect(() => {
         const sorted = items
             .sort((a, b) => new Date(a.date) - new Date(b.date))
-            .slice(0, 6); 
-        setSortedItems(sorted); 
+            .slice(0, 6);
+        setSortedItems(sorted);
     }, [items]);
 
 
@@ -55,10 +55,13 @@ const HomePage = () => {
                                             <strong>Location:</strong> {item.location}
                                         </p>
                                         {/* Date */}
-                                        <p className="text-sm text-gray-600 mb-4">
+                                        <p className="text-sm text-gray-600 mb-2">
                                             <strong>Date:</strong>{" "}
                                             {new Date(item.date).toLocaleDateString()}
                                         </p>
+                                        <h1 className='text-sm mb-4 text-gray-600 overflow-hidden text-ellipsis whitespace-nowrap'
+                                        ><strong className=''>Description:</strong> {item.description}
+                                        </h1>
                                         {/* View Details Button */}
                                         <button
                                             onClick={() => navigate(`/items/${item._id}`)}
