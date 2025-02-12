@@ -11,6 +11,7 @@ import UpdateItemsPage from "../pages/UpdateItemsPage";
 import PostDetailsPage from "../pages/PostDetailsPage";
 import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import ContactPage from "../pages/ContactPage";
 
 const router = createBrowserRouter([
     {
@@ -55,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: "allRecovered",
                 element : <PrivateRoute><AllRecoveredItemsPage></AllRecoveredItemsPage></PrivateRoute>,
+            },
+            {
+                path:'contact',
+                element: <ContactPage></ContactPage>
             },
             {
                 path: '*',

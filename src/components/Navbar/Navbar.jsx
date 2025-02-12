@@ -63,6 +63,16 @@ const Navbar = () => {
                         >
                             Lost and Found Items
                         </NavLink>
+                        <NavLink
+                            to="/contact"
+                            className={({ isActive }) =>
+                                isActive
+                                    ? "text-[#6666F2] font-semibold border-b-2 border-[#6666F2]"
+                                    : "text-gray-700 hover:text-[#6666F2]"
+                            }
+                        >
+                            Contact Us
+                        </NavLink>
                     </div>
 
                     {/* User Section */}
@@ -185,6 +195,15 @@ const Navbar = () => {
                             onClick={closeMenus}
                         >
                             Lost and Found Items
+                        </NavLink>
+                        <NavLink
+                            to="/contact"
+                            className={({ isActive }) =>
+                                isActive ? "block py-2 text-[#6666F2] font-semibold" : "block py-2 text-gray-700 hover:text-[#6666F2]"
+                            }
+                            onClick={closeMenus}
+                        >
+                            contact us
                         </NavLink>
                         <button
                             onClick={() => {
