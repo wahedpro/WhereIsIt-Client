@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { authContext } from "../../provider/AuthProvider";
 
@@ -6,7 +6,18 @@ const Navbar = () => {
     const { user, logoutUser } = useContext(authContext);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (theme === "dark") {
+            document.documentElement.classList.add("dark");
+        } else {
+            document.documentElement.classList.remove("dark");
+        }
+        localStorage.setItem("theme", theme);
+    }, [theme]);
+
 
     const handleLogout = () => {
         logoutUser()
@@ -34,10 +45,10 @@ const Navbar = () => {
     return (
         <>
             {/* Fixed Navbar */}
-            <div className="fixed lg:w-[85%] w-full mx-auto bg-white z-50">
+            <div className="fixed lg:w-[85%] w-full mx-auto bg-white dark:bg-gray-900 z-50">
                 <div className="container mx-auto flex justify-between items-center py-4 lg:px-0 px-3 border-b-2">
                     {/* Website Name */}
-                    <NavLink to="/" className="font-semibold text-2xl text-gray-800 hover:text-[#6666F2]">
+                    <NavLink to="/" className="font-semibold text-2xl  dark:text-white hover:text-[#6666F2]">
                         WhereIsIt
                     </NavLink>
 
@@ -47,8 +58,8 @@ const Navbar = () => {
                             to="/"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "text-[#6666F2] font-semibold border-b-2 border-[#6666F2]"
-                                    : "text-gray-700 hover:text-[#6666F2]"
+                                    ? "text-[#6666F2] font-semibold border-b-2 border-[#6666F2] dark:text-white"
+                                    : "text-gray-700 hover:text-[#6666F2] dark:text-white"
                             }
                         >
                             Home
@@ -57,8 +68,8 @@ const Navbar = () => {
                             to="/allItems"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "text-[#6666F2] font-semibold border-b-2 border-[#6666F2]"
-                                    : "text-gray-700 hover:text-[#6666F2]"
+                                    ? "text-[#6666F2] font-semibold border-b-2 border-[#6666F2] dark:text-white"
+                                    : "text-gray-700 hover:text-[#6666F2] dark:text-white"
                             }
                         >
                             Lost and Found Items
@@ -67,8 +78,8 @@ const Navbar = () => {
                             to="/contact"
                             className={({ isActive }) =>
                                 isActive
-                                    ? "text-[#6666F2] font-semibold border-b-2 border-[#6666F2]"
-                                    : "text-gray-700 hover:text-[#6666F2]"
+                                    ? "text-[#6666F2] font-semibold border-b-2 border-[#6666F2] dark:text-white"
+                                    : "text-gray-700 hover:text-[#6666F2] dark:text-white"
                             }
                         >
                             Contact Us
@@ -77,6 +88,12 @@ const Navbar = () => {
 
                     {/* User Section */}
                     <div className="flex items-center gap-4">
+                        <button
+                            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                            className="p-2 bg-gray-200 dark:bg-gray-800 rounded hidden lg:block"
+                        >
+                            {theme === "light" ? "🌙" : "☀️"}
+                        </button>
                         {user ? (
                             <div className="relative flex items-center gap-3">
                                 {/* Profile Picture */}
@@ -145,6 +162,12 @@ const Navbar = () => {
 
                     {/* Mobile Hamburger Menu */}
                     <div className="md:hidden flex gap-3 items-center">
+                    <button
+                            onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+                            className="p-2 bg-gray-200 dark:bg-gray-800 rounded"
+                        >
+                            {theme === "light" ? "🌙" : "☀️"}
+                        </button>
                         {/* profile images */}
                         {
                             user ? (
