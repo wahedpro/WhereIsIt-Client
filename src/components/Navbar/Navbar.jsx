@@ -128,13 +128,13 @@ const Navbar = () => {
                             </div>
                         ) : (
                             // Login Button
-                            <div className="flex gap-3 items-center">
+                            <div className="lg:flex gap-3 items-center hidden ">
                                 <NavLink
                                     to="/login"
                                     className={({ isActive }) =>
                                         isActive
                                             ? "px-5 py-2 border bg-[#6666F2] text-white rounded"
-                                            : "px-5 py-2 border bg-white text-gray-700 hover:bg-[#6666F2] hover:text-white rounded"
+                                            : "px-5 py-2 border bg-white text-gray-700 border-[#6666F2] hover:bg-[#6666F2] hover:text-white rounded"
                                     }
                                 >
                                     Log in
@@ -146,13 +146,19 @@ const Navbar = () => {
                     {/* Mobile Hamburger Menu */}
                     <div className="md:hidden flex gap-3 items-center">
                         {/* profile images */}
-                        <img
-                            className="w-10 h-10 rounded-full cursor-pointer border border-gray-200"
-                            src={user?.photoURL}
-                            alt="User Profile"
-                            onClick={toggleDropdown}
-                            title={user?.displayName}
-                        />
+                        {
+                            user ? (
+                                <img
+                                    className="w-10 h-10 rounded-full cursor-pointer border border-gray-200"
+                                    src={user?.photoURL}
+                                    alt="User Profile"
+                                    onClick={toggleDropdown}
+                                    title={user?.displayName}
+                                />
+                            ) : (
+                                ""
+                            )
+                        }
                         <button
                             className="text-gray-700 focus:outline-none"
                             onClick={toggleMobileMenu}
@@ -205,15 +211,30 @@ const Navbar = () => {
                         >
                             contact us
                         </NavLink>
-                        <button
-                            onClick={() => {
-                                handleLogout();
-                                closeMenus();
-                            }}
-                            className="px-4 py-2 text-white bg-[#6666F2] rounded hover:bg-[#6666F2] transition"
-                        >
-                            Logout
-                        </button>
+                        {
+                            user ? (
+                                <button
+                                    onClick={() => {
+                                        handleLogout();
+                                        closeMenus();
+                                    }}
+                                    className="px-4 py-2 text-white bg-[#6666F2] rounded hover:bg-[#6666F2] transition"
+                                >
+                                    Logout
+                                </button>
+                            ) : (
+                                <NavLink
+                                    to="/login"
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? "px-5 py-2 border bg-[#6666F2] border-[#6666F2] text-white rounded"
+                                            : "px-5 py-2 border bg-white text-gray-700 border-[#6666F2] hover:bg-[#6666F2] hover:text-white rounded"
+                                    }
+                                >
+                                    Log in
+                                </NavLink>
+                            )
+                        }
                     </div>
                 )}
             </div>
