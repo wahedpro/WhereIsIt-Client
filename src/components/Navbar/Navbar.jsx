@@ -35,7 +35,7 @@ const Navbar = () => {
         <>
             {/* Fixed Navbar */}
             <div className="fixed lg:w-[85%] w-full mx-auto bg-white z-50">
-                <div className="container mx-auto flex justify-between items-center py-4 px-5 border-b-2">
+                <div className="container mx-auto flex justify-between items-center py-4 lg:px-0 px-3 border-b-2">
                     {/* Website Name */}
                     <NavLink to="/" className="font-semibold text-2xl text-gray-800 hover:text-[#6666F2]">
                         WhereIsIt

@@ -29,7 +29,7 @@ const Banner = () => {
                                     Welcome to Our Platform
                                 </h2>
                                 <p className="text-white text-lg sm:text-xl md:text-2xl italic">
-                                    "The journey of a thousand miles begins with one step."
+                                &ldquo;The journey of a thousand miles begins with one step&ldquo;
                                 </p>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ const Banner = () => {
                                     Find What You Lost
                                 </h2>
                                 <p className="text-white text-lg sm:text-xl md:text-2xl italic">
-                                    "What is lost may not always be found, but hope is never lost."
+                                &ldquo;What is lost may not always be found, but hope is never lost.&ldquo;
                                 </p>
                             </div>
                         </div>
@@ -67,7 +67,7 @@ const Banner = () => {
                                     Helping You Connect
                                 </h2>
                                 <p className="text-white text-lg sm:text-xl md:text-2xl italic">
-                                    "Alone we can do so little; together we can do so much."
+                                &ldquo;Alone we can do so little; together we can do so much.&ldquo;
                                 </p>
                             </div>
                         </div>
